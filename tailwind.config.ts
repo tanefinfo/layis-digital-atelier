@@ -67,6 +67,8 @@ export default {
         bronze: "hsl(var(--bronze))",
         sand: "hsl(var(--sand))",
         cream: "hsl(var(--cream))",
+        leather: "hsl(var(--leather))",
+        espresso: "hsl(var(--espresso))",
       },
       borderRadius: {
         lg: "var(--radius)",
