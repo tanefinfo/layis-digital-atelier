@@ -6,49 +6,51 @@
 
 @layer base {
   :root {
-    /* LAYIS Luxury Color Palette */
-    --background: 40 20% 98%;
-    --foreground: 30 10% 10%;
+    /* LAYIS Ethiopian Leather - Muted Earthy Palette */
+    --background: 30 12% 94%;
+    --foreground: 25 15% 15%;
 
-    --card: 40 15% 96%;
-    --card-foreground: 30 10% 10%;
+    --card: 32 10% 91%;
+    --card-foreground: 25 15% 15%;
 
-    --popover: 40 20% 98%;
-    --popover-foreground: 30 10% 10%;
+    --popover: 30 12% 94%;
+    --popover-foreground: 25 15% 15%;
 
-    --primary: 30 10% 12%;
-    --primary-foreground: 40 20% 98%;
+    --primary: 25 20% 20%;
+    --primary-foreground: 35 15% 92%;
 
-    --secondary: 35 15% 92%;
-    --secondary-foreground: 30 10% 20%;
+    --secondary: 30 10% 85%;
+    --secondary-foreground: 25 18% 22%;
 
-    --muted: 35 10% 90%;
-    --muted-foreground: 30 8% 45%;
+    --muted: 28 8% 82%;
+    --muted-foreground: 25 10% 45%;
 
-    --accent: 32 25% 85%;
-    --accent-foreground: 30 10% 15%;
+    --accent: 28 18% 78%;
+    --accent-foreground: 25 18% 18%;
 
-    --destructive: 0 72% 51%;
+    --destructive: 0 65% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 35 15% 88%;
-    --input: 35 15% 88%;
-    --ring: 30 10% 30%;
+    --border: 30 12% 82%;
+    --input: 30 12% 82%;
+    --ring: 25 18% 35%;
 
     --radius: 0.25rem;
 
-    /* LAYIS Custom Tokens */
-    --ivory: 45 30% 96%;
-    --charcoal: 30 10% 12%;
-    --taupe: 30 15% 70%;
-    --bronze: 32 45% 45%;
-    --sand: 38 25% 88%;
-    --cream: 42 35% 94%;
+    /* LAYIS Custom Tokens - Earthy Ethiopian Leather Tones */
+    --ivory: 35 20% 90%;
+    --charcoal: 25 15% 18%;
+    --taupe: 28 12% 55%;
+    --bronze: 28 35% 40%;
+    --sand: 32 18% 78%;
+    --cream: 34 15% 88%;
+    --leather: 25 30% 35%;
+    --espresso: 20 25% 22%;
 
-    /* Shadows */
-    --shadow-subtle: 0 2px 20px -5px hsl(30 10% 20% / 0.08);
-    --shadow-elevated: 0 8px 40px -10px hsl(30 10% 20% / 0.12);
-    --shadow-product: 0 15px 50px -15px hsl(30 10% 20% / 0.15);
+    /* Shadows - Warmer, more muted */
+    --shadow-subtle: 0 2px 20px -5px hsl(25 15% 20% / 0.1);
+    --shadow-elevated: 0 8px 40px -10px hsl(25 15% 20% / 0.15);
+    --shadow-product: 0 15px 50px -15px hsl(25 15% 20% / 0.18);
 
     /* Transitions */
     --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -59,64 +61,66 @@
     --font-serif: 'Cormorant Garamond', Georgia, serif;
     --font-sans: 'Outfit', system-ui, sans-serif;
 
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-background: 30 10% 92%;
+    --sidebar-foreground: 25 12% 30%;
+    --sidebar-primary: 25 15% 15%;
+    --sidebar-primary-foreground: 35 15% 92%;
+    --sidebar-accent: 30 8% 88%;
+    --sidebar-accent-foreground: 25 15% 15%;
+    --sidebar-border: 30 10% 80%;
+    --sidebar-ring: 28 35% 45%;
   }
 
   .dark {
-    --background: 30 10% 8%;
-    --foreground: 40 15% 92%;
+    --background: 25 15% 10%;
+    --foreground: 32 12% 88%;
 
-    --card: 30 10% 12%;
-    --card-foreground: 40 15% 92%;
+    --card: 25 12% 14%;
+    --card-foreground: 32 12% 88%;
 
-    --popover: 30 10% 10%;
-    --popover-foreground: 40 15% 92%;
+    --popover: 25 15% 12%;
+    --popover-foreground: 32 12% 88%;
 
-    --primary: 40 20% 95%;
-    --primary-foreground: 30 10% 8%;
+    --primary: 35 15% 88%;
+    --primary-foreground: 25 15% 10%;
 
-    --secondary: 30 10% 18%;
-    --secondary-foreground: 40 15% 90%;
+    --secondary: 25 10% 20%;
+    --secondary-foreground: 32 12% 85%;
 
-    --muted: 30 10% 20%;
-    --muted-foreground: 35 10% 60%;
+    --muted: 25 10% 22%;
+    --muted-foreground: 30 8% 55%;
 
-    --accent: 32 20% 25%;
-    --accent-foreground: 40 15% 92%;
+    --accent: 28 15% 28%;
+    --accent-foreground: 32 12% 88%;
 
-    --destructive: 0 62% 50%;
+    --destructive: 0 55% 45%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 30 10% 20%;
-    --input: 30 10% 20%;
-    --ring: 35 15% 70%;
+    --border: 25 10% 22%;
+    --input: 25 10% 22%;
+    --ring: 30 12% 65%;
 
-    --ivory: 30 10% 12%;
-    --charcoal: 40 15% 92%;
-    --taupe: 30 10% 50%;
-    --bronze: 32 40% 55%;
-    --sand: 30 10% 22%;
-    --cream: 30 10% 15%;
+    --ivory: 25 12% 14%;
+    --charcoal: 32 12% 88%;
+    --taupe: 28 10% 50%;
+    --bronze: 28 30% 50%;
+    --sand: 25 10% 25%;
+    --cream: 25 10% 18%;
+    --leather: 28 25% 45%;
+    --espresso: 32 12% 85%;
 
-    --shadow-subtle: 0 2px 20px -5px hsl(0 0% 0% / 0.3);
-    --shadow-elevated: 0 8px 40px -10px hsl(0 0% 0% / 0.4);
-    --shadow-product: 0 15px 50px -15px hsl(0 0% 0% / 0.5);
+    --shadow-subtle: 0 2px 20px -5px hsl(0 0% 0% / 0.35);
+    --shadow-elevated: 0 8px 40px -10px hsl(0 0% 0% / 0.45);
+    --shadow-product: 0 15px 50px -15px hsl(0 0% 0% / 0.55);
 
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-background: 25 12% 12%;
+    --sidebar-foreground: 32 10% 90%;
+    --sidebar-primary: 28 30% 55%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 25 10% 18%;
+    --sidebar-accent-foreground: 32 10% 90%;
+    --sidebar-border: 25 10% 18%;
+    --sidebar-ring: 28 30% 50%;
   }
 }
 
@@ -181,9 +185,17 @@
   .luxury-gradient {
     background: linear-gradient(
       135deg,
-      hsl(var(--ivory)) 0%,
+      hsl(var(--sand)) 0%,
       hsl(var(--cream)) 50%,
-      hsl(var(--sand)) 100%
+      hsl(var(--muted)) 100%
+    );
+  }
+
+  .leather-gradient {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--leather)) 0%,
+      hsl(var(--espresso)) 100%
     );
   }
 

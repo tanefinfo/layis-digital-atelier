@@ -1,19 +1,12 @@
 import { X, Minus, Plus, ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/context/CartContext";
+import { formatPrice } from "@/data/products";
 import { cn } from "@/lib/utils";
 import { Link } from "react-router-dom";
 
 export const CartDrawer = () => {
   const { items, isOpen, closeCart, removeItem, updateQuantity, subtotal } = useCart();
-
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
-      minimumFractionDigits: 0,
-    }).format(price);
-  };
 
   return (
     <>
