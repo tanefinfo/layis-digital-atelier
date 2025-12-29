@@ -17,8 +17,8 @@ import { toast } from "sonner";
 const navLinks = [
   { href: "/collections", label: "Collections" },
   { href: "/shop", label: "Shop" },
+  { href: "/fashion", label: "Fashion" },
   { href: "/about", label: "About" },
-  { href: "/journal", label: "Journal" },
 ];
 
 export const Header = () => {

@@ -12,6 +12,7 @@ import ProductDetail from "./pages/ProductDetail";
 import Collections from "./pages/Collections";
 import About from "./pages/About";
 import Journal from "./pages/Journal";
+import Fashion from "./pages/Fashion";
 import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
 
@@ -33,6 +34,7 @@ const App = () => (
                 <Route path="/collections" element={<Collections />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/journal" element={<Journal />} />
+                <Route path="/fashion" element={<Fashion />} />
                 <Route path="/auth" element={<Auth />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
