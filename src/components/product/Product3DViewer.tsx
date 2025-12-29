@@ -1,6 +1,6 @@
 import { Suspense, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, Environment, ContactShadows, Html } from "@react-three/drei";
+import { OrbitControls, ContactShadows } from "@react-three/drei";
 import * as THREE from "three";
 
 interface Product3DViewerProps {
@@ -8,14 +8,21 @@ interface Product3DViewerProps {
   color?: string;
 }
 
-function LoadingSpinner() {
+// Simple loading fallback (mesh-based, no Html)
+function LoadingFallback() {
+  const meshRef = useRef<THREE.Mesh>(null);
+  
+  useFrame((state) => {
+    if (meshRef.current) {
+      meshRef.current.rotation.y = state.clock.elapsedTime * 2;
+    }
+  });
+
   return (
-    <Html center>
-      <div className="flex flex-col items-center gap-3">
-        <div className="w-10 h-10 border-2 border-bronze/30 border-t-bronze rounded-full animate-spin" />
-        <p className="text-sm text-muted-foreground">Loading 3D Model...</p>
-      </div>
-    </Html>
+    <mesh ref={meshRef}>
+      <torusGeometry args={[0.5, 0.1, 8, 32]} />
+      <meshStandardMaterial color="#B8860B" />
+    </mesh>
   );
 }
 
@@ -298,11 +305,12 @@ export function Product3DViewer({ productType, color }: Product3DViewerProps) {
         gl={{ antialias: true, alpha: true }}
         dpr={[1, 2]}
       >
-        <Suspense fallback={<LoadingSpinner />}>
-          <ambientLight intensity={0.5} />
+        <Suspense fallback={<LoadingFallback />}>
+          <ambientLight intensity={0.6} />
           <directionalLight position={[5, 5, 5]} intensity={1} castShadow />
-          <directionalLight position={[-5, 3, -5]} intensity={0.3} />
-          <spotLight position={[0, 5, 0]} intensity={0.5} angle={0.5} penumbra={1} />
+          <directionalLight position={[-5, 3, -5]} intensity={0.4} />
+          <spotLight position={[0, 5, 0]} intensity={0.6} angle={0.5} penumbra={1} />
+          <pointLight position={[0, -2, 3]} intensity={0.3} />
           
           <ProductModel productType={productType} color={color} />
           
@@ -313,8 +321,6 @@ export function Product3DViewer({ productType, color }: Product3DViewerProps) {
             blur={2}
             far={4}
           />
-          
-          <Environment preset="studio" />
           
           <OrbitControls
             enablePan={true}
