@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
 import { products, formatPrice } from "@/data/products";
@@ -6,9 +6,10 @@ import { Button } from "@/components/ui/button";
 import { useCart } from "@/context/CartContext";
 import { cn } from "@/lib/utils";
 import { Helmet } from "react-helmet-async";
-import { ChevronLeft, Minus, Plus, Heart, Share2 } from "lucide-react";
+import { ChevronLeft, Minus, Plus, Heart, Share2, Box, Image } from "lucide-react";
 import { toast } from "sonner";
 import { ProductCard } from "@/components/product/ProductCard";
+import { Product3DViewer } from "@/components/product/Product3DViewer";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -19,6 +20,26 @@ const ProductDetail = () => {
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
   const [quantity, setQuantity] = useState(1);
+  const [viewMode, setViewMode] = useState<"image" | "3d">("image");
+
+  // Determine 3D model type based on product category
+  const productType = useMemo(() => {
+    if (!product) return "accessories";
+    const category = product.category.toLowerCase();
+    if (category.includes("bag") || category.includes("tote") || category.includes("briefcase") || category.includes("satchel")) return "bag";
+    if (category.includes("jacket") || category.includes("coat") || category.includes("blazer")) return "jacket";
+    if (category.includes("shoe") || category.includes("boot") || category.includes("loafer") || category.includes("oxford")) return "shoes";
+    if (category.includes("belt")) return "belt";
+    if (category.includes("wallet") || category.includes("card")) return "wallet";
+    return "accessories";
+  }, [product]) as "bag" | "jacket" | "shoes" | "belt" | "wallet" | "accessories";
+
+  // Get color hex for 3D model
+  const selectedColorHex = useMemo(() => {
+    if (!product || !selectedColor) return undefined;
+    const color = product.colors.find(c => c.name === selectedColor);
+    return color?.hex;
+  }, [product, selectedColor]);
 
   if (!product) {
     return (
@@ -74,35 +95,68 @@ const ProductDetail = () => {
             </Link>
 
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
-              {/* Images */}
+              {/* Images / 3D Toggle */}
               <div className="space-y-4">
-                <div className="aspect-[3/4] bg-muted overflow-hidden">
-                  <img
-                    src={product.images[selectedImage]}
-                    alt={product.name}
-                    className="w-full h-full object-cover animate-fade-in"
-                  />
+                {/* View Mode Toggle */}
+                <div className="flex gap-2 mb-4">
+                  <Button
+                    variant={viewMode === "image" ? "hero" : "outline"}
+                    size="sm"
+                    onClick={() => setViewMode("image")}
+                    className="flex items-center gap-2"
+                  >
+                    <Image className="h-4 w-4" />
+                    Images
+                  </Button>
+                  <Button
+                    variant={viewMode === "3d" ? "hero" : "outline"}
+                    size="sm"
+                    onClick={() => setViewMode("3d")}
+                    className="flex items-center gap-2"
+                  >
+                    <Box className="h-4 w-4" />
+                    3D View
+                  </Button>
                 </div>
-                {product.images.length > 1 && (
-                  <div className="flex gap-4">
-                    {product.images.map((image, index) => (
-                      <button
-                        key={index}
-                        onClick={() => setSelectedImage(index)}
-                        className={cn(
-                          "w-20 h-24 bg-muted overflow-hidden border-2 transition-all",
-                          selectedImage === index
-                            ? "border-foreground"
-                            : "border-transparent opacity-60 hover:opacity-100"
-                        )}
-                      >
-                        <img
-                          src={image}
-                          alt={`${product.name} view ${index + 1}`}
-                          className="w-full h-full object-cover"
-                        />
-                      </button>
-                    ))}
+
+                {viewMode === "image" ? (
+                  <>
+                    <div className="aspect-[3/4] bg-muted overflow-hidden">
+                      <img
+                        src={product.images[selectedImage]}
+                        alt={product.name}
+                        className="w-full h-full object-cover animate-fade-in"
+                      />
+                    </div>
+                    {product.images.length > 1 && (
+                      <div className="flex gap-4">
+                        {product.images.map((image, index) => (
+                          <button
+                            key={index}
+                            onClick={() => setSelectedImage(index)}
+                            className={cn(
+                              "w-20 h-24 bg-muted overflow-hidden border-2 transition-all",
+                              selectedImage === index
+                                ? "border-foreground"
+                                : "border-transparent opacity-60 hover:opacity-100"
+                            )}
+                          >
+                            <img
+                              src={image}
+                              alt={`${product.name} view ${index + 1}`}
+                              className="w-full h-full object-cover"
+                            />
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <div className="aspect-[3/4] relative overflow-hidden rounded-lg">
+                    <Product3DViewer 
+                      productType={productType} 
+                      color={selectedColorHex}
+                    />
                   </div>
                 )}
               </div>
