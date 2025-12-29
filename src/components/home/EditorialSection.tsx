@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import editorialImage from "@/assets/fashion-4.png";
 
 export const EditorialSection = () => {
   return (
@@ -9,7 +10,7 @@ export const EditorialSection = () => {
           {/* Image */}
           <div className="relative aspect-[4/5] overflow-hidden image-reveal">
             <img
-              src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=1200&q=80"
+              src={editorialImage}
               alt="LAYIS Editorial"
               className="w-full h-full object-cover"
             />
